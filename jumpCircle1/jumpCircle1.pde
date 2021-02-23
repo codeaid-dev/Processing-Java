@@ -44,14 +44,9 @@ void draw() {
     return;
   }
 
-    if (x >= 10 && x <= 60 && y >= 347-w/2
-        || x >= 110 && x <= 160 && y >= 293-w/2
-        || x >= 210 && x <= 260 && y >= 247-w/2
-        || x >= 310 && x <= 360 && y >= 193-w/2
-        || x >= 410 && x <= 460 && y >= 147-w/2
-        ) {
+    if (onBar() == 1) {
       g = 0;
-    } else if (x >= 510 && x <= 560 && y >= 93-w/2) {
+    } else if (onBar() == 2) {
       g = 0;
       clear = true;
     } else {
@@ -72,7 +67,9 @@ void draw() {
       sx += 0.1;
     }
     if (keyCode == 0) {
-      g = -3;
+      if (onBar() == 1) {
+        g = -5;
+      }
     }
   }
 
@@ -85,4 +82,18 @@ void draw() {
     if (x < w/2 || x > (width - w/2) || y < h/2 || y > (height - h/2)) {
       gameOver = true;
     }
+}
+
+int onBar() {
+  if (x >= 10 && x <= 60 && y >= 347-w/2
+        || x >= 110 && x <= 160 && y >= 293-w/2
+        || x >= 210 && x <= 260 && y >= 247-w/2
+        || x >= 310 && x <= 360 && y >= 193-w/2
+        || x >= 410 && x <= 460 && y >= 147-w/2
+        ) {
+    return 1;
+  } else if (x >= 510 && x <= 560 && y >= 93-w/2) {
+    return 2;
+  }
+  return 0;
 }
