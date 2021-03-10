@@ -83,6 +83,7 @@ void draw() {
   if (x < pSize/2 || x > (width - pSize/2) || y < pSize/2 || y > (height - pSize/2)) {
     gameOver = true;
   }
+  // 時間切れかどうかのチェック
   if (count < 0) {
     gameOver = true;
   }
