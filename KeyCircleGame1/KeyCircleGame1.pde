@@ -15,6 +15,7 @@ void draw(){
 
   if (keyPressed) {
     if (keyCode == UP) {
+<<<<<<< HEAD
         sy -= 1;
     }
     if (keyCode == DOWN) {
@@ -25,6 +26,18 @@ void draw(){
     }
     if (keyCode == RIGHT) {
         sx += 1;
+=======
+      sy -= 1;
+    }
+    if (keyCode == DOWN) {
+      sy += 1;
+    }
+    if (keyCode == LEFT) {
+      sx -= 1;
+    }
+    if (keyCode == RIGHT) {
+      sx += 1;
+>>>>>>> 57ddba62b0342d594f96bfa2f13e276c89885514
     }
   }
 
