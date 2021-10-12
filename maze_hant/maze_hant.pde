@@ -37,16 +37,11 @@ void setup() {
   }
 
   while(true){
-    for (int y = 0; y < 15; y++) {
-      for (int x = 0; x < 15; x++) {
-        if (bombY == y && bombX == x && maze[y][x] == 0) {
-          maze[y][x] = 2;
-          return;
-        } else {
-          bombX = (int)random(3,15);
-          bombY = (int)random(3,15);
-        }
-      }
+    bombX = (int)random(3,15);
+    bombY = (int)random(3,15);
+    if (maze[bombY][bombX] == 0) {
+      maze[bombY][bombX] = 2;
+      break;
     }
   }
 }
@@ -84,9 +79,14 @@ void draw() {
     }
   }
 
-  if (maze[ypos][xpos] == 2) {
+  if (over) {
     fill(255, 0, 0);
-    ellipse(bombX*40+20, bombY*40+20, 30, 30);
+  } else {
+    fill(0, 255, 0);
+  }
+  ellipse(xpos*40+20, ypos*40+20, 30, 30);
+
+  if (maze[ypos][xpos] == 2) {
     textSize(30);
     textAlign(CENTER);
     text("FIND!!", width/2, height/2);
@@ -94,12 +94,9 @@ void draw() {
     return;
   }
 
-  fill(0, 255, 0);
-  ellipse(xpos*40+20, ypos*40+20, 30, 30);
-
   fill(255,0,0,128);
   rect(0,0,timer,20);
-  timer -= 0.5;
+  timer -= 0.1;
   if (timer < 0) {
     textSize(30);
     textAlign(CENTER);

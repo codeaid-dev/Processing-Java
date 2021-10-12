@@ -37,16 +37,11 @@ void setup() {
   }
 
   while(true){
-    for (int y = 0; y < 15; y++) {
-      for (int x = 0; x < 15; x++) {
-        if (bombY == y && bombX == x && maze[y][x] == 0) {
-          maze[y][x] = 2;
-          return;
-        } else {
-          bombX = (int)random(3,15);
-          bombY = (int)random(3,15);
-        }
-      }
+    bombX = (int)random(3,15);
+    bombY = (int)random(3,15);
+    if (maze[bombY][bombX] == 0) {
+      maze[bombY][bombX] = 2;
+      break;
     }
   }
 }
