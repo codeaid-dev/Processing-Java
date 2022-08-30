@@ -1,0 +1,12 @@
+size(500, 500);
+rect(100, 100, 300, 300);
+fill(0);
+textSize(30);
+textAlign(LEFT);
+text("ONE", 100, 130);
+textAlign(RIGHT);
+text("TWO", 400, 130);
+textAlign(LEFT);
+text("THREE", 100, 400);
+textAlign(RIGHT);
+text("FOUR", 400, 400);
