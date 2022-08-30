@@ -1,0 +1,13 @@
+size(500,500);
+background(255);
+strokeWeight(20);
+noFill();
+ellipse(250,250,300,300);
+ellipse(250,250,220,220);
+ellipse(250,250,140,140);
+fill(255);
+noStroke();
+triangle(500,0,0,500,500,500);
+triangle(0,0,0,500,500,500);
+fill(0);
+ellipse(250,250,60,60);
