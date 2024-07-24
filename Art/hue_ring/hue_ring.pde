@@ -1,6 +1,6 @@
 void setup() {
   size(500,500);
-  colorMode(HSB,360,255,255);
+  colorMode(HSB,360,100,100);
 }
 
 void draw() {
@@ -10,7 +10,7 @@ void draw() {
     float x = width/2 + radius * cos(radians(i));
     float y = height/2 + radius * sin(radians(i));
     strokeWeight(5);
-    stroke(i,255,255);
+    stroke(i,100,100);
     line(width/2,height/2,x,y);
   }
 }
