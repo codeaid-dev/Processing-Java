@@ -8,9 +8,9 @@ void setup() {
 }
 
 void draw() {
+  noStroke();
   fill(0,10);
   rect(0,0,width,height);
-  noFill();
   stroke(0,255,200);
   ArrayList<Ripple> cpy = new ArrayList<>(rips);
   for (Ripple rip : cpy) {
