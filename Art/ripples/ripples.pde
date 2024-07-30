@@ -4,7 +4,7 @@ class Ripple {
 }
 ArrayList<Ripple> rips = new ArrayList<>();
 void setup() {
-  size(500,500);
+  size(640,360);
 }
 
 void draw() {
@@ -29,4 +29,10 @@ void mousePressed() {
   rip.y = mouseY;
   rip.r1 = 1;
   rips.add(rip);
+}
+
+void keyPressed() {
+  if (key == ' ') {
+    save("ripples.png");
+  }
 }
