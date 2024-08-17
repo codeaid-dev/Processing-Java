@@ -1,13 +1,7 @@
 // 四角形1のx,y座標、幅、高さ
-float rect1X = 100;
-float rect1Y = 100;
-int rect1W = 100;
-int rect1H = 100;
+float rect1X=100,rect1Y=100,rect1W=100,rect1H=100;
 // 四角形2のx,y座標、幅、高さ
-float rect2X = 150;
-float rect2Y = 150;
-int rect2W = 100;
-int rect2H = 100;
+float rect2X=150,rect2Y=150,rect2W=100,rect2H=100;
 
 void setup() {
   size(400, 400);
