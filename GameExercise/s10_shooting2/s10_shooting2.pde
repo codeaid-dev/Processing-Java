@@ -21,9 +21,9 @@ class Sprite {
     image(img,x,y);
   }
   boolean collide(Sprite sprite) {
-        float distance =
-        sqrt((x-sprite.x)*(x-sprite.x) + (y-sprite.y)*(y-sprite.y));
-        return distance < radius+sprite.radius;
+    float distance =
+    sqrt((x-sprite.x)*(x-sprite.x) + (y-sprite.y)*(y-sprite.y));
+    return distance < radius+sprite.radius;
   }
 }
 Sprite player;
