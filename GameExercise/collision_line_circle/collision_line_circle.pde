@@ -32,7 +32,10 @@ void draw() {
   }
 }
 
-boolean collision(float Ax,float Ay,float Bx,float By,float Px,float Py,float radius) {
+boolean collision(float Ax,float Ay,
+                  float Bx,float By,
+                  float Px,float Py,
+                  float radius) {
   PVector AP = new PVector(Px-Ax,Py-Ay);
   PVector AB = new PVector(Bx-Ax,By-Ay);
   AB.normalize();
