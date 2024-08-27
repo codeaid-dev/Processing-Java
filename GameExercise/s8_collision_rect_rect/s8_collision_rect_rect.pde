@@ -1,7 +1,7 @@
-// 四角形1のx,y座標、幅、高さ
-float rect1X=100,rect1Y=100,rect1W=100,rect1H=100;
-// 四角形2のx,y座標、幅、高さ
-float rect2X=150,rect2Y=150,rect2W=100,rect2H=100;
+// 四角形Aのx,y座標、幅、高さ
+float AX=100,AY=100,AW=100,AH=100;
+// 四角形Bのx,y座標、幅、高さ
+float BX=150,BY=150,BW=100,BH=100;
 
 void setup() {
   size(400, 400);
@@ -11,18 +11,16 @@ void draw() {
   background(255);
   noStroke();
 
-  rect1X = mouseX-50;
-  rect1Y = mouseY-50;
+  AX = mouseX-50;
+  AY = mouseY-50;
   fill(0, 255, 0);
-  rect(rect1X, rect1Y, rect1W, rect1H);
+  rect(AX, AY, AW, AH);
   
-  if (rect1X < rect2X+rect2W &&
-      rect1X+rect1W > rect2X &&
-      rect1Y < rect2Y+rect2H &&
-      rect1Y+rect1H > rect2Y) {
+  if (AX <= BX+BW && AX+AW >= BX &&
+      AY <= BY+BH && AY+AH >= BY) {
     fill(255,0,0,150);
   } else {
     fill(0);
   }
-  rect(rect2X, rect2Y, rect2W, rect2H);  
+  rect(BX, BY, BW, BH);  
 }
