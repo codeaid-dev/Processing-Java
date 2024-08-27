@@ -48,10 +48,10 @@ boolean collide(float cx, float cy, float cr, float rx, float ry, float rw, floa
   // float closestY = constrain(cy, ry, ry + rh);
 
   // 円の中心から四角形の最近傍点までの距離を計算
-  float distanceX = cx - closestX;
-  float distanceY = cy - closestY;
+  float dx = cx - closestX;
+  float dy = cy - closestY;
 
   // 距離の二乗が円の半径の二乗以下なら衝突している
-  float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
+  float distance = sqrt(dx * dx + dy * dy);
   return distance < cr;
 }
