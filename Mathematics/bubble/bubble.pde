@@ -24,7 +24,7 @@ void setup() {
   }
 }
 void draw() {
-  background(255);
+  background(0);
   for (Circle en : ens) {
     if (en.move) {
       en.x += en.speed * cos(en.angle*PI/180);
@@ -45,7 +45,7 @@ void draw() {
             //ens.remove(en);
             en.move = false;
             en.iro = color(255,0);
-            other.size += en.size/5;
+            other.size = sqrt(en.size * en.size + other.size * other.size);
             if (other.x < other.size/2)
               other.x = other.size/2;
             if (other.x > width-other.size/2)
@@ -71,11 +71,13 @@ void mousePressed() {
       en.iro = color(255,0);
       for (int n=0; n<360; n+=30) {
         Circle new_en = new Circle();
-        new_en.size = en.size/5;
-        new_en.x = en.x;
-        new_en.y = en.y;
         new_en.angle = n;
-        new_en.speed = 1;
+        new_en.x = en.x + en.size/2 * cos(n*PI/180);
+        new_en.y = en.y + en.size/2 * sin(n*PI/180);
+        float nextX = en.x + en.size/2 * cos((n+30)*PI/180);
+        float nextY = en.y + en.size/2 * sin((n+30)*PI/180);
+        new_en.size = dist(new_en.x,new_en.y,nextX,nextY);
+        new_en.speed = 1.5;
         new_en.iro = color(random(255),random(255),random(255));
         new_en.move = true;
         ens.add(new_en);
