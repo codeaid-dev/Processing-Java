@@ -1,9 +1,6 @@
-float centerX=0,centerY=0;
 float followX=450,followY=450;
 void setup() {
   size(500,500);
-  centerX = width/2;
-  centerY = height/2;
 }
 
 void draw() {
@@ -36,9 +33,9 @@ void showDegrees(float angle) {
   textSize(30);
   textAlign(CENTER);
   text(str(ceil(degrees(angle)))+" degrees",
-       centerX,height-100);
+       width/2,height-100);
   text(str(int(angle*100)/100.0)+" radians",
-       centerX,height-50);
+       width/2,height-50);
 }
 
 void followCircle() {
