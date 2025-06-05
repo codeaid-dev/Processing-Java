@@ -27,6 +27,7 @@ class Sprite {
   }
 }
 Sprite player;
+boolean up, down, left, right;
 ArrayList<Sprite> enemies = new ArrayList<>();
 ArrayList<Sprite> bullets = new ArrayList<>();
 boolean shoot = false;
@@ -41,13 +42,13 @@ void draw() {
   if (frameCount%30 == 0)
     enemies.add(new Sprite(random(width),random(-500,-100),0,5,"ufo.png"));
   if (keyPressed) {
-    if (keyCode == UP)
+    if (up)
       player.dy -= 1;
-    if (keyCode == DOWN)
+    if (down)
       player.dy += 1;
-    if (keyCode == LEFT)
+    if (left)
       player.dx -= 1;
-    if (keyCode == RIGHT)
+    if (right)
       player.dx += 1;
     if (key == ' ' && shoot == false) {
       Sprite b = new Sprite(player.x,player.y,0,-5,"missiles.png");
@@ -87,4 +88,18 @@ void draw() {
     b.draw();
   }
   //println(bullets.size());
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }
