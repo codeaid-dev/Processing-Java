@@ -3,6 +3,7 @@ float y = 200;
 float s = 30;
 float dx = 0;
 float dy = 0;
+boolean up, down, left, right;
 int hc = 5;
 float hx[] = new float[hc];
 float hy[] = new float[hc];
@@ -32,10 +33,10 @@ void draw() {
   }
 
   if (keyPressed) {
-    if (keyCode == UP && dy == 0) { dy = -12; }
-    if (keyCode == DOWN) { dy += 2; }
-    if (keyCode == LEFT) { dx -= 0.1; }
-    if (keyCode == RIGHT) { dx += 0.1; }
+    if (up && dy == 0) { dy = -12; }
+    if (down) { dy += 2; }
+    if (left) { dx -= 0.1; }
+    if (right) { dx += 0.1; }
   }
 
   dx *= 0.98;
@@ -50,4 +51,18 @@ void draw() {
     fill(0);
     ellipse(hx[i],hy[i],hs[i],hs[i]);
   }
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

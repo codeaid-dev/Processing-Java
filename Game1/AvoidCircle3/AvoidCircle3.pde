@@ -1,6 +1,5 @@
-float x = 250;
-float y = 400;
-float s = 50;
+float x = 250, y = 400, s = 50;
+boolean up, down, left, right;
 FloatList block_x = new FloatList(); 
 FloatList block_y = new FloatList();  
 FloatList block_size = new FloatList();
@@ -15,31 +14,15 @@ void draw() {
   ellipse(x,y,s,s);
 
   if (keyPressed) {
-    if (keyCode == RIGHT) {
-      x += 3;
-    }
-    if (keyCode == LEFT) {
-      x -= 3;
-    }
-    if (keyCode == UP) {
-      y -= 3;
-    }
-    if (keyCode == DOWN) {
-      y += 3;
-    }
+    if (up) y -= 3;
+    if (down) y += 3;
+    if (left) x -= 3;
+    if (right) x += 3;
   }
-  if (x < s/2) {
-    x += 3;
-  }
-  if (x > width-s/2) {
-    x -= 3;
-  }
-  if (y < s/2) {
-    y += 3;
-  }
-  if (y > height-s/2) {
-    y -= 3;
-  }
+  if (x < s/2) x += 3;
+  if (x > width-s/2) x -= 3;
+  if (y < s/2) y += 3;
+  if (y > height-s/2) y -= 3;
   if (frameCount % 10 == 0) {
     block_x.append(random(width));
     block_y.append(0);
@@ -53,4 +36,18 @@ void draw() {
         block_size.get(i),
         block_size.get(i));
   }
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

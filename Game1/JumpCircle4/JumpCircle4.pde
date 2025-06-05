@@ -3,6 +3,7 @@ float y = 200;
 float s = 30;
 float dx = 0;
 float dy = 0;
+boolean up, down, left, right;
 int hc = 5;
 float hx[] = new float[hc];
 float hy[] = new float[hc];
@@ -78,4 +79,18 @@ void hit() {
     }
   }
   if (count == hc) { over = true; }
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

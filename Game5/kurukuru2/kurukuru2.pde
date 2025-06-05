@@ -44,6 +44,7 @@ class Bullet {
 
 Sprite player;
 boolean shooting = false;
+boolean left, right, space;
 ArrayList<Sprite> monsters = new ArrayList<>();
 void setup() {
   size(1000, 1000);
@@ -67,14 +68,16 @@ void setup() {
 void draw() {
   background(200);
   if (keyPressed) {
-    if (keyCode == LEFT)
+    if (left)
       player.angle -= 3;
-    if (keyCode == RIGHT)
+    if (right)
       player.angle += 3;
-    if (key == ' ' && shooting == false) {
+    if (space && shooting == false) {
       player.shot(5);
       shooting = true;
     }
+    if (!space && shooting)
+      shooting = false;
   } else {
     shooting = false;
   }
@@ -113,4 +116,16 @@ void draw() {
       }
     }
   }
+}
+
+void keyPressed() {
+  if (key == ' ') space = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (key == ' ') space = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

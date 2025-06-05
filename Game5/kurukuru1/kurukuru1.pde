@@ -41,6 +41,7 @@ class Bullet {
 
 Sprite player;
 boolean shooting = false;
+boolean left, right, space;
 void setup() {
   size(1000, 1000);
   player = new Sprite("majo.png");
@@ -53,18 +54,19 @@ void setup() {
 void draw() {
   background(200);
   if (keyPressed) {
-    if (keyCode == LEFT)
+    if (left)
       player.angle -= 3;
-    if (keyCode == RIGHT)
+    if (right)
       player.angle += 3;
-    if (key == ' ' && shooting == false) {
+    if (space && shooting == false) {
       player.shot(5);
       shooting = true;
     }
+    if (!space && shooting)
+      shooting = false;
   } else {
     shooting = false;
   }
-
   for (Bullet b : player.bullets) {
     b.move();
     b.display(color(255,255,0));
@@ -75,4 +77,16 @@ void draw() {
   rotate(radians(player.angle));
   image(player.img, 0, 0);
   popMatrix();
+}
+
+void keyPressed() {
+  if (key == ' ') space = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (key == ' ') space = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

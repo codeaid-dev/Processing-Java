@@ -4,6 +4,7 @@ float sx=0, sy=0;
 boolean over = false;
 boolean clear = false;
 float count = 400;
+boolean up, down, left, right;
 
 void setup() {
   size(600, 400);
@@ -52,13 +53,13 @@ void draw() {
   }
 
   if (keyPressed) {
-    if (keyCode == UP)
+    if (up)
       sy -= 0.1;
-    if (keyCode == DOWN)
+    if (down)
       sy += 0.1;
-    if (keyCode == LEFT)
+    if (left)
       sx -= 0.1;
-    if (keyCode == RIGHT)
+    if (right)
       sx += 0.1;
   }
 
@@ -79,4 +80,18 @@ void draw() {
 
   if (x >= 515+w/2 && x <= 565-w/2 && y >= 50+w/2 && y <= 100-w/2)
     clear = true;
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }

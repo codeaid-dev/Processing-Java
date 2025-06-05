@@ -25,6 +25,7 @@ Circle player;
 Circle walls[] = new Circle[54];
 boolean over=false, clear=false;
 float timer = 400;
+boolean up, down, left, right;
 void setup() {
   size(600,400);
   player = new Circle(60,60,30);
@@ -61,13 +62,13 @@ void draw() {
   }
 
   if (keyPressed) {
-    if (keyCode == UP)
+    if (up)
       player.dy -= 0.1;
-    if (keyCode == DOWN)
+    if (down)
       player.dy += 0.1;
-    if (keyCode == LEFT)
+    if (left)
       player.dx -= 0.1;
-    if (keyCode == RIGHT)
+    if (right)
       player.dx += 0.1;
   }
 
@@ -90,4 +91,18 @@ void draw() {
   timer -= 0.6;
   if (timer < 0)
     over = true;
+}
+
+void keyPressed() {
+  if (keyCode == UP) up = true;
+  if (keyCode == DOWN) down = true;
+  if (keyCode == LEFT) left = true;
+  if (keyCode == RIGHT) right = true;
+}
+
+void keyReleased() {
+  if (keyCode == UP) up = false;
+  if (keyCode == DOWN) down = false;
+  if (keyCode == LEFT) left = false;
+  if (keyCode == RIGHT) right = false;
 }
