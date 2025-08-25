@@ -72,20 +72,18 @@ void draw() {
       c.draw(color(0,255,0));
     }
   }
-  
+
   for (Circle b : bullets) {
     b.y -= 5;
-    boolean hit = false;
     for (Circle c : circles) {
       if (b.is_hit(c)) {
         b.available = false;
         c.available = false;
-        hit = true;
         score++;
         break;
       }
     }
-    if (!hit && b.available) {
+    if (b.available) {
       b.draw(color(255,0,0));
     }
     if (b.y < -b.s/2) {
@@ -135,4 +133,3 @@ void keyPressed() {
     bullets.add(b);
   }
 }
-    
