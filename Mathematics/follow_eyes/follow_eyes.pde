@@ -5,7 +5,7 @@ void setup() {
 void draw() {
   background(255);
   noStroke();
-  fill(128,70,70);
+  fill(70,120,200);
   ellipse(width/2,height/2,width,height);
   float leftX = width/2-100;
   float leftY = height/2;
