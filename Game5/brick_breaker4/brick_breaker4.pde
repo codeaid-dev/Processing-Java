@@ -1,19 +1,30 @@
 class Ball {
-  float x,y,radius,speed,angle;
+  float x,y,dx,dy,radius,speed,angle;
   Ball() {
     x=width/2;
     y=height/2;
     radius = 5;
     speed = 5;
-    angle = random(QUARTER_PI,HALF_PI+ QUARTER_PI);
+    //angle = random(QUARTER_PI,HALF_PI+ QUARTER_PI);
+    angle = (PI/4)+random(1)*(PI/2);
+    setAngle(random(45,135));
+  }
+  void setAngle(float deg) {
+    float rad = deg * PI / 180;
+    dx = speed * cos(rad);
+    dy = speed * sin(rad);
   }
   void move() {
-    x += speed*cos(angle);
-    y += speed*sin(angle);
+    x += dx;
+    y += dy;
+    // x += speed*cos(angle);
+    // y += speed*sin(angle);
     if (x < radius || x > width-radius)
-      angle = PI-angle;
+      dx *= -1;
+      // angle = PI-angle;
     if (y < radius || y > height-radius)
-      angle *= -1;
+      dy *= -1;
+      // angle *= -1;
   }
   void draw() {
     fill(255);
@@ -108,7 +119,13 @@ void draw() {
 
   if (ball.collision(player)) {
     // 変換後の最小値+(変換後の範囲)*((指定した数値-変換前の最小値)/(変換前の範囲))
-    ball.angle = PI+PI*(ball.x-player.x)/player.w;
+    float center = player.x + player.w/2;
+    float hitPos = (ball.x - center) / (player.w/2); // -1 ~ 1
+    float rad = hitPos * PI/3; // -60° ~ 60° 
+    ball.dx = ball.speed * sin(rad);
+    ball.dy = -ball.speed * cos(rad);
+    ball.y = player.y - ball.radius;
+    // ball.angle = PI+PI*(ball.x-player.x)/player.w;
     //ball.angle = map(ball.x,player.x,player.x+player.w,PI,TWO_PI);
   }
   int count=0;
@@ -116,9 +133,11 @@ void draw() {
     if (ball.collision(b) && b.valid) {
       if ((ball.y-ball.radius < b.y+b.h && b.y+b.h < ball.y+ball.radius)
         || (ball.y-ball.radius < b.y && b.y < ball.y+ball.radius)) {
-        ball.angle *= -1;
+        ball.dy *= -1;
+        // ball.angle *= -1;
       } else {
-        ball.angle = PI-ball.angle;
+        ball.dx *= -1;
+        // ball.angle = PI-ball.angle;
       }
       b.valid=false;
     }
