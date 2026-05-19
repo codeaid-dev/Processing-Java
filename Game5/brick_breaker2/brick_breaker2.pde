@@ -1,11 +1,17 @@
 class Ball {
-  float x,y,dx,dy,s;
+  float x,y,dx,dy,s,speed,radius;
   Ball() {
-    this.x = 250;
-    this.y = 300;
-    this.dx = random(-4,4);
-    this.dy = random(2,4);
+    this.x = 300;
+    this.y = 400;
+    this.radius = 5;
     this.s = 10;
+    this.speed = 5;
+    setAngle(random(45,135));
+  }
+  void setAngle(float deg) {
+    float rad = deg * PI / 180;
+    this.dx = this.speed * cos(rad);
+    this.dy = this.speed * sin(rad);
   }
   void move() {
     this.x += this.dx;
@@ -56,9 +62,9 @@ Brick player;
 String mode = "stop"; // stop:stop, play:playing, over:gameover, clear:gameclear
 
 void setup() {
-  size(500,600);
+  size(600,800);
   ball = new Ball();
-  player = new Brick(mouseX-25,570,50,20);
+  player = new Brick(mouseX-25,770,50,20);
 }
 
 void draw() {

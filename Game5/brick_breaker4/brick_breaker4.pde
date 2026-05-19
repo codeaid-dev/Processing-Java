@@ -118,13 +118,13 @@ void draw() {
   }
 
   if (ball.collision(player)) {
-    // 変換後の最小値+(変換後の範囲)*((指定した数値-変換前の最小値)/(変換前の範囲))
     float center = player.x + player.w/2;
     float hitPos = (ball.x - center) / (player.w/2); // -1 ~ 1
     float rad = hitPos * PI/3; // -60° ~ 60° 
     ball.dx = ball.speed * sin(rad);
     ball.dy = -ball.speed * cos(rad);
     ball.y = player.y - ball.radius;
+    // 変換後の最小値+(変換後の範囲)*((指定した数値-変換前の最小値)/(変換前の範囲))
     // ball.angle = PI+PI*(ball.x-player.x)/player.w;
     //ball.angle = map(ball.x,player.x,player.x+player.w,PI,TWO_PI);
   }
