@@ -1,4 +1,4 @@
-int point = 5;
+int p = 5;
 void setup() {
   size(500,500);
 }
@@ -6,7 +6,9 @@ void setup() {
 void draw() {
   background(255);
   fill(255,255,0);
-  star(width/2,height/2,100,40,point);
+  translate(width/2,height/2);
+  rotate(-90*PI/180);
+  star(0,0,100,40,p);
 }
 
 void star(float x,float y,float radius1,float radius2,int n) {
@@ -28,6 +30,6 @@ void star(float x,float y,float radius1,float radius2,int n) {
 
 void keyPressed() {
   if (keyCode >= 49 && keyCode <= 57) {
-    point = keyCode-48;
+    p = keyCode-48;
   }
 }
