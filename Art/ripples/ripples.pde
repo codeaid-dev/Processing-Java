@@ -4,7 +4,7 @@ class Ripple {
 }
 ArrayList<Ripple> rips = new ArrayList<>();
 void setup() {
-  size(640,360);
+  size(500,500);
 }
 
 void draw() {
