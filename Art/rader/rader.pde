@@ -1,9 +1,14 @@
-int r=0;
-float targets[][] = {{random(50,450),random(50,450),random(10,100)},
-           {random(50,450),random(50,450),random(10,100)},
-           {random(50,450),random(50,450),random(10,100)}};
+int angle=0;
+ArrayList<FloatList> targets = new ArrayList<FloatList>();
 void setup() {
     size(500,500);
+    for (int i=0; i<3; i++) {
+      FloatList info = new FloatList();
+      info.append(width/2 + random(50,width/2-50) * cos(random(TWO_PI)));
+      info.append(height/2 + random(50,height/2-50) * sin(random(TWO_PI)));
+      info.append(random(25,100));
+      targets.add(info);
+    }
 }
 
 void draw() {
@@ -11,15 +16,15 @@ void draw() {
     fill(0,10);
     rect(0,0,width,height);
     stroke(0,255,0);
-    float x = width/2 + width/2 * cos(radians(r));
-    float y = height/2 + height/2 * sin(radians(r));
+    float x = width/2 + width/2 * cos(radians(angle%360));
+    float y = height/2 + height/2 * sin(radians(angle%360));
     strokeWeight(5);
     line(x,y,width/2,height/2);
-    r += 1;
-    for (float[] t : targets) {
-        if (collision(x,y,width/2,height/2,t[0],t[1],t[2]/2)) {
+    angle += 1;
+    for (FloatList t : targets) {
+        if (collision(x,y,width/2,height/2,t.get(0),t.get(1),t.get(2)/2)) {
             fill(0,255,0);
-            ellipse(t[0],t[1],t[2],t[2]);
+            ellipse(t.get(0),t.get(1),t.get(2),t.get(2));
         }
     }
 }
