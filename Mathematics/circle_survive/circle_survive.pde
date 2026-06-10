@@ -31,9 +31,19 @@ void draw() {
       en.y += en.speed * sin(en.angle*PI/180);
       if (en.x < en.size/2 || en.x > width-en.size/2) {
         en.angle = 180-en.angle;
+        if (en.x < en.size/2) {
+          en.x = en.size/2;
+        } else if (en.x > width-en.size/2) {
+          en.x = width-en.size/2;
+        }
       }
       if (en.y < en.size/2 || en.y > height-en.size/2) {
         en.angle *= -1;
+        if (en.y < en.size/2) {
+          en.y = en.size/2;
+        } else if (en.y > height-en.size/2) {
+          en.y = height-en.size/2;
+        }
       }
     }
     for (Circle other : ens) {
