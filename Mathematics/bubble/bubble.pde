@@ -14,8 +14,19 @@ void setup() {
   for (int i=0; i<100; i++) {
     Circle en = new Circle();
     en.size = random(30,50);
-    en.x = random(en.size/2,width-en.size/2);
-    en.y = random(en.size/2,height-en.size/2);
+    boolean ok = false;
+    while (!ok) {
+      en.x = random(en.size/2,width-en.size/2);
+      en.y = random(en.size/2,height-en.size/2);
+      ok = true;
+      for (Circle other : ens) {
+        float dst = dist(en.x,en.y,other.x,other.y);
+        if (dst < en.size/2 + other.size/2) {
+          ok = false;
+          break;
+        }
+      }
+    }
     en.angle = random(360);
     en.speed = random(1,3);
     en.iro = color(random(255),random(255),random(255));
