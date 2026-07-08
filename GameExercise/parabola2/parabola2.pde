@@ -19,26 +19,24 @@ void draw() {
   fill(0);
   noStroke();
   ellipse(x,y,50,50);
-  if (flying) {
-    x += dx;
-    y += dy;
-    dy += gravity;
-    if (y>=height-25) {
-      y = height-25;
-      dx *= 0.98;
-      if (abs(dy) < 1.5) {
-        dy = 0;
-        flying=false;
-        if (abs(dx) < 0.1) {
-          dx = 0;
-        }
-      } else {
-        dy *= -0.8;
+  x += dx;
+  y += dy;
+  dy += gravity;
+  if (y>=height-25) {
+    y = height-25;
+    dx *= 0.98;
+    if (abs(dy) < 1.5) {
+      dy = 0;
+      flying=false;
+      if (abs(dx) < 0.1) {
+        dx = 0;
       }
+    } else {
+      dy *= -0.8;
     }
-    if (x<=25 || x>=width-25) {
-      dx *= -1;
-    }
+  }
+  if (x<=25 || x>=width-25) {
+    dx *= -1;
   }
 }
 
