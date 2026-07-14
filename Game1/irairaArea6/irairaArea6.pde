@@ -8,7 +8,7 @@ class Circle {
     this.goal = false;
   }
 
-  void display(color c) {
+  void draw(color c) {
     fill(c);
     ellipse(this.x,this.y,this.s,this.s);
   }
@@ -41,12 +41,12 @@ void draw() {
   noStroke();
   for (Circle w : walls) {
     if (w.goal) {
-      w.display(color(0,0,255));
+      w.draw(color(0,0,255));
     } else {
-      w.display(color(255,0,0));
+      w.draw(color(255,0,0));
     }
   }
-  player.display(color(0));
+  player.draw(color(0));
   textSize(50);
   textAlign(CENTER);
   if (over) {

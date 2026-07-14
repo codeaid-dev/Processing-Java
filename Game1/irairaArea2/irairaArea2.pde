@@ -6,7 +6,7 @@ class Circle {
     this.s = s;
   }
 
-  void display(color c) {
+  void draw(color c) {
     fill(c);
     ellipse(this.x,this.y,this.s,this.s);
   }
@@ -21,7 +21,7 @@ void setup() {
 void draw() {
   background(255);
   noStroke();
-  player.display(color(0));
+  player.draw(color(0));
   player.x = mouseX;
   player.y = mouseY;
 }
