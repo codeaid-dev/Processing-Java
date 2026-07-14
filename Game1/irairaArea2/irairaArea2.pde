@@ -15,13 +15,21 @@ class Circle {
 Circle player;
 void setup() {
   size(600,400);
-  player = new Circle(60,60,30);
+  player = new Circle(67,15,30);
 }
 
 void draw() {
   background(255);
   noStroke();
   player.draw(color(0));
-  player.x = mouseX;
-  player.y = mouseY;
+}
+
+void mouseMoved() {
+  if (mouseX > player.s/2 &&
+  mouseX < width-player.s/2 &&
+  mouseY > player.s/2 &&
+  mouseY < height-player.s/2) {
+    player.x = mouseX;
+    player.y = mouseY;
+  }
 }

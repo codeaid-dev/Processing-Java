@@ -15,7 +15,7 @@ class Circle {
 Circle player;
 void setup() {
   size(600,400);
-  player = new Circle(60,60,30);
+  player = new Circle(67,15,30);
 }
 
 void draw() {

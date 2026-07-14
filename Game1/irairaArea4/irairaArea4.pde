@@ -18,7 +18,7 @@ Circle player;
 Circle walls[] = new Circle[54];
 void setup() {
   size(600,400);
-  player = new Circle(60,60,30);
+  player = new Circle(67,15,30);
   int goal = int(random(54));
   for (int i=0; i<54; i++) {
     float x = i%9;
@@ -40,6 +40,21 @@ void draw() {
     }
   }
   player.draw(color(0));
-  player.x = mouseX;
-  player.y = mouseY;
+}
+
+boolean playing = false;
+void mouseMoved() {
+  if (!playing) {
+    if (dist(mouseX,mouseY,player.x,player.y) <= 15) {
+      playing = true;
+    }
+    return;
+  }
+  if (mouseX > player.s/2 &&
+  mouseX < width-player.s/2 &&
+  mouseY > player.s/2 &&
+  mouseY < height-player.s/2) {
+    player.x = mouseX;
+    player.y = mouseY;
+  }
 }
