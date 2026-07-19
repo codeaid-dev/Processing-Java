@@ -1,33 +1,58 @@
-float x=0, y=0, g=0;
+float x=40, y=40;
 float w=30, h=30;
-float sx=0, sy=0;
+float dx=0, dy=0;
 boolean over = false;
 boolean clear = false;
-float count = 400;
 boolean up, left, right;
+boolean onGround = false;
+
+class Line {
+  float x1,y1,x2,y2;
+  boolean goal;
+  Line(float x1,float y1,float x2,float y2) {
+    this.x1 = x1;
+    this.y1 = y1;
+    this.x2 = x2;
+    this.y2 = y2;
+    this.goal = false;
+  }
+  void draw() {
+    if (this.goal) {
+      stroke(255,0,0);
+    } else {
+      stroke(0);
+    }
+    strokeWeight(6);
+    line(this.x1,this.y1,this.x2,this.y2);
+  }
+  boolean isHit(float x,float y,float radius) {
+    return this.x1 <= x && this.x2 >= x &&
+        this.y1 >= y-radius && this.y1 <= y+radius;
+  }
+}
+Line[] lines = new Line[6];
 
 void setup() {
   size(600, 400);
-  x = 40;
-  y = 40;
-  g = 1;
-  w = 30;
-  h = 30;
+  for (int i=0; i<6; i++) {
+    Line l = new Line(
+      i*100+10,
+      350-i*50,
+      i*100+60,
+      350-i*50
+    );
+    if (i == 5) {
+      l.goal = true;
+    }
+    lines[i] = l;
+  }
 }
 
 void draw() {
   background(255);
-
-  stroke(0);
-  strokeWeight(6);
-  line(10, 350, 60, 350);
-  line(110, 300, 160, 300);
-  line(210, 250, 260, 250);
-  line(310, 200, 360, 200);
-  line(410, 150, 460, 150);
-  stroke(255, 0, 0);
-  line(510, 100, 560, 100);
-
+  for (Line l : lines) {
+    l.draw();
+  }
   noStroke();
   fill(0);
   ellipse(x, y, w, h);
@@ -46,35 +71,34 @@ void draw() {
     return;
   }
 
-  if (10 <= x && x <= 60 && 350 >= y && y >= 347-w/2
-      || 110 <= x && x <= 160 && 300 >= y && y >= 293-h/2
-      || 210 <= x && x <= 260 && 250 >= y && y >= 247-h/2
-      || 310 <= x && x <= 360 && 200 >= y && y >= 193-h/2
-      || 410 <= x && x <= 460 && 150 >= y && y >= 147-h/2) {
-    g = 0;
-  } else if (510 <= x && x <= 560 && 100 >= y && y >= 93-h/2) {
-    g = 0;
-    clear = true;
-  } else {
-    g += 0.1;
+  onGround = false;
+  for (Line l : lines) {
+    if (l.isHit(x,y,w/2)) {
+      dy = 0;
+      if (l.goal) {
+        clear = true;
+      }
+      onGround = true;
+      break;
+    }
   }
 
   if (keyPressed) {
-    if (up && g == 0)
-      sy -= 7;
+    if (up && dy == 0)
+      dy -= 7;
     if (left)
-      sx -= 0.1;
+      dx -= 0.1;
     if (right)
-      sx += 0.1;
+      dx += 0.1;
   }
 
-  sx *= 0.98;
-  sy *= 0.98;
-  x += sx;
-  y += sy;
-  y += g;
+  dx *= 0.98;
+  dy *= 0.98;
+  x += dx;
+  y += dy;
 
-  if (x < w/2 || x > (width - w/2) || y < h/2 || y > (height - h/2))
+  if (!onGround) dy += 0.3;
+  if (y > (height - h/2))
     over = true;
 }
 
