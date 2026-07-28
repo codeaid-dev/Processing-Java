@@ -5,7 +5,7 @@ void setup() {
 
 void draw() {
   background(255);
-  for (int i=width; i>0; i-=2) {
+  for (int i=width; i>0; i--) {
     float c = map(i,0,width,0,255);
     fill(c);
     ellipse(width/2,height/2,i,i);
